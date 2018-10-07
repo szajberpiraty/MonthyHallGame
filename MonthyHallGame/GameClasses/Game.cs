@@ -9,6 +9,9 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using MonthyHallGame;
 using System.Windows.Media.Imaging;
+using System.IO;
+using System.Reflection;
+using System.Drawing;
 
 namespace MonthyHallGame.GameClasses
 {
@@ -29,7 +32,18 @@ namespace MonthyHallGame.GameClasses
         public void Start()
         {
             mainWindow.elsoAjto.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
-            mainWindow.pik.Source = new BitmapImage(new Uri(@"d:\razgon\ali.jpg"));
+            //kibaszott tetű geci megoldás
+            Uri faking=new Uri("pack://application:,,,/pics/ali.jpg");
+
+            mainWindow.pik.Source = new BitmapImage(faking);
+            //mainWindow.pik.Source = new BitmapImage(new Uri(@"d:\razgon\ali.jpg"));
+           
+            
+            
+            
+                
+            
+
             ikonok[0] = FontAwesome.WPF.FontAwesomeIcon.Star;
             ikonok[1] = FontAwesome.WPF.FontAwesomeIcon.Save;
             ikonok[2] = FontAwesome.WPF.FontAwesomeIcon.Save;
