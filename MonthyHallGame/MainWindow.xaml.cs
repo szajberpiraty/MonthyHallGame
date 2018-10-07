@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MonthyHallGame.GameClasses;
+using FontAwesome.WPF;
 
 namespace MonthyHallGame
 {
@@ -20,9 +22,20 @@ namespace MonthyHallGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        //dependency injection!!
+        Game Game;
         public MainWindow()
         {
+                                   
             InitializeComponent();
+    
+            //átadom a mainwindow-t           
+            Game = new Game(this);
+            Game.Start();
+
         }
+
+
+
     }
 }
