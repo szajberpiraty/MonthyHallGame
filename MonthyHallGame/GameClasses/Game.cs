@@ -32,10 +32,10 @@ namespace MonthyHallGame.GameClasses
         public void Start()
         {
             mainWindow.elsoAjto.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
-            //kibaszott tetű geci megoldás
-            Uri faking=new Uri("pack://application:,,,/pics/ali.jpg");
-
-            mainWindow.pik.Source = new BitmapImage(faking);
+            //kibaszott tetű geci megoldás, csak content-ként megy
+            //Uri faking=new Uri("pack://application:,,,/pics/ali.jpg");
+            Uri faking2 = new Uri("/pics/ali.jpg", UriKind.Relative);
+            mainWindow.pik.Source = new BitmapImage(faking2);
             //mainWindow.pik.Source = new BitmapImage(new Uri(@"d:\razgon\ali.jpg"));
            
             
