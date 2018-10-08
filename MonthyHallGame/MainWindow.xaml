@@ -12,7 +12,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
+            
         </Grid.RowDefinitions>
+        
         <Grid Name="ikongrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -37,5 +39,6 @@
                    Source="pics/door_closed.png"                   
                    Grid.Row="0"/>
         </Grid>
+        <Label x:Name="valasztott" Content="" Grid.Row="1" />
     </Grid>
 </Window>

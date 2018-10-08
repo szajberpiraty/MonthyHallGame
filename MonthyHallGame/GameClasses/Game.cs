@@ -25,6 +25,8 @@ namespace MonthyHallGame.GameClasses
         private BitmapImage[] kepek_mogott = new BitmapImage[3];
         private BitmapImage auto;
         Random veletlenSzam = new Random();
+        int valasztottkep=4;
+        int uj_valasztottkep = 4;
 
 
 
@@ -57,10 +59,17 @@ namespace MonthyHallGame.GameClasses
 
             var autopoz = veletlenSzam.Next(0,kepek.Length);
             kepek_mogott[autopoz] = auto;
-                     
+
+            
 
             //todo: megcsinálni és nullázni a számlálókat
         }
+
+        public void ElsoAjtoNyitas()
+        {
+
+        }
+
 
         public void kep_MouseDown(object sender,MouseEventArgs e)
         {
@@ -71,6 +80,15 @@ namespace MonthyHallGame.GameClasses
 
             System.Windows.Controls.Image kep = (System.Windows.Controls.Image)sender;
             kep.Opacity = 0.7;
+
+            for (int i = 0; i < ablak_kepek.Length; i++)
+            {
+                if (ablak_kepek[i].Opacity == 0.7)
+                {
+                    valasztottkep = i;
+                }
+            }
+            mainWindow.valasztott.Content = valasztottkep;
         }
 
         public void Mutat()
