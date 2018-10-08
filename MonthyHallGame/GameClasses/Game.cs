@@ -51,11 +51,26 @@ namespace MonthyHallGame.GameClasses
             ablak_kepek[1] = mainWindow.masodikAjto;
             ablak_kepek[2] = mainWindow.harmadikAjto;
 
+            ablak_kepek[0].MouseDown += kep_MouseDown;
+            ablak_kepek[1].MouseDown += kep_MouseDown;
+            ablak_kepek[2].MouseDown += kep_MouseDown;
+
             var autopoz = veletlenSzam.Next(0,kepek.Length);
             kepek_mogott[autopoz] = auto;
                      
 
             //todo: megcsinálni és nullázni a számlálókat
+        }
+
+        public void kep_MouseDown(object sender,MouseEventArgs e)
+        {
+            for (int i = 0; i < ablak_kepek.Length; i++)
+            {
+                ablak_kepek[i].Opacity = 1;
+            }
+
+            System.Windows.Controls.Image kep = (System.Windows.Controls.Image)sender;
+            kep.Opacity = 0.7;
         }
 
         public void Mutat()
