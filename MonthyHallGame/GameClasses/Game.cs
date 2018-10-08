@@ -20,8 +20,14 @@ namespace MonthyHallGame.GameClasses
 
         
         private MainWindow mainWindow;
-        FontAwesome.WPF.FontAwesomeIcon[] ikonok = new FontAwesome.WPF.FontAwesomeIcon[3];
-        
+        private System.Windows.Controls.Image[] ablak_kepek=new System.Windows.Controls.Image[3];
+        private BitmapImage[] kepek= new BitmapImage[3];
+        private BitmapImage[] kepek_mogott = new BitmapImage[3];
+        private BitmapImage auto;
+        Random veletlenSzam = new Random();
+
+
+
 
 
         public Game(MainWindow mainWindow)
@@ -31,26 +37,52 @@ namespace MonthyHallGame.GameClasses
 
         public void Start()
         {
-            mainWindow.elsoAjto.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
-            //kibaszott tetű geci megoldás, csak content-ként megy
-            //Uri faking=new Uri("pack://application:,,,/pics/ali.jpg");
-            Uri faking2 = new Uri("/pics/ali.jpg", UriKind.Relative);
-            mainWindow.pik.Source = new BitmapImage(faking2);
-            //mainWindow.pik.Source = new BitmapImage(new Uri(@"d:\razgon\ali.jpg"));
-           
             
-            
-            
-                
-            
+            kepek[0] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
+            kepek[1] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
+            kepek[2] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
 
-            ikonok[0] = FontAwesome.WPF.FontAwesomeIcon.Star;
-            ikonok[1] = FontAwesome.WPF.FontAwesomeIcon.Save;
-            ikonok[2] = FontAwesome.WPF.FontAwesomeIcon.Save;
-            mainWindow.elsoAjto.Icon = ikonok[0];
-            
+            kepek_mogott[0]= new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            kepek_mogott[1] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            kepek_mogott[2] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            auto= new BitmapImage(new Uri("/pics/car.png", UriKind.Relative));
+
+            ablak_kepek[0] = mainWindow.elsoAjto;
+            ablak_kepek[1] = mainWindow.masodikAjto;
+            ablak_kepek[2] = mainWindow.harmadikAjto;
+
+            var autopoz = veletlenSzam.Next(0,kepek.Length);
+            kepek_mogott[autopoz] = auto;
+                     
+
+            //todo: megcsinálni és nullázni a számlálókat
         }
-     
+
+        public void Mutat()
+        {
+            KepFrissit(kepek_mogott);
+        }
+
+        public void Kepcsere(string pic,int index)
+        {
+            kepek[index]= new BitmapImage(new Uri(pic, UriKind.Relative));
+            KepFrissit(kepek);
+        }
+
+        public void Kepcsere(string pic, int index, BitmapImage[] kepek)
+        {
+            kepek[index] = new BitmapImage(new Uri(pic, UriKind.Relative));
+            KepFrissit(kepek);
+        }
+        
+
+        private void KepFrissit(BitmapImage[] kepek)
+        {
+            ablak_kepek[0].Source = kepek[0];
+            ablak_kepek[1].Source =kepek[1];
+            ablak_kepek[2].Source = kepek[2];
+                     
+        }
 
 
     }

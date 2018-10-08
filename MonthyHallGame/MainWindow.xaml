@@ -19,26 +19,22 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <fa:FontAwesome Name="elsoAjto"
-                            Icon="Save"
-                            Grid.Column="0"
-                            Grid.Row="0"
-                            FontSize="100"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-            <fa:FontAwesome Name="masodikAjto"
-                            Icon="Save"
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            FontSize="100"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-            <Image x:Name="pik"
+            
+            <Image x:Name="elsoAjto"
+                   fa:Awesome.Content="Android"
+                   Grid.Column="0"
+                   Source="pics/door_closed.png"                   
+                   Grid.Row="0"/>
+            <Image x:Name="masodikAjto"
+                   fa:Awesome.Content="Android"
+                   Grid.Column="1"
+                   Source="pics/door_closed.png"                   
+                   Grid.Row="0"/>
+            
+            <Image x:Name="harmadikAjto"
                    fa:Awesome.Content="Android"
                    Grid.Column="2"
-                   Source="d:\razgon\emperor.jpg"                   
+                   Source="pics/door_closed.png"                   
                    Grid.Row="0"/>
         </Grid>
     </Grid>

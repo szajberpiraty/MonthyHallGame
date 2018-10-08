@@ -32,6 +32,8 @@ namespace MonthyHallGame
             //átadom a mainwindow-t           
             Game = new Game(this);
             Game.Start();
+            Game.Mutat();
+            
 
         }
 
