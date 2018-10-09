@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace MonthyHallGame.GameClasses
 {
@@ -27,6 +28,8 @@ namespace MonthyHallGame.GameClasses
         Random veletlenSzam = new Random();
         int valasztottkep=4;
         int uj_valasztottkep = 4;
+        List<int> kecskePoz=new List<int>();
+        int autoPoz;
 
 
 
@@ -57,9 +60,17 @@ namespace MonthyHallGame.GameClasses
             ablak_kepek[1].MouseDown += kep_MouseDown;
             ablak_kepek[2].MouseDown += kep_MouseDown;
 
-            var autopoz = veletlenSzam.Next(0,kepek.Length);
-            kepek_mogott[autopoz] = auto;
+            autoPoz = veletlenSzam.Next(0,kepek.Length);
+            kepek_mogott[autoPoz] = auto;
 
+            for (int i = 0; i < kepek_mogott.Length; i++)
+            {
+                if (kepek_mogott[i]!=auto)
+                {
+                    kecskePoz.Add(i);
+                    Debug.WriteLine(i);
+                }
+            }
             
 
             //todo: megcsinálni és nullázni a számlálókat
@@ -67,7 +78,14 @@ namespace MonthyHallGame.GameClasses
 
         public void ElsoAjtoNyitas()
         {
+            var melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
+            while (kecskePoz[melyikAjto]==valasztottkep)
+            {
+                melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
+            }
 
+            kepek[melyikAjto] = kepek_mogott[melyikAjto];
+            KepFrissit(kepek);
         }
 
 
@@ -89,6 +107,7 @@ namespace MonthyHallGame.GameClasses
                 }
             }
             mainWindow.valasztott.Content = valasztottkep;
+            ElsoAjtoNyitas();
         }
 
         public void Mutat()
