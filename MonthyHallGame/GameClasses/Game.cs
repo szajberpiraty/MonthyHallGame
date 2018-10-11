@@ -89,10 +89,10 @@ namespace MonthyHallGame.GameClasses
 
             }
             Debug.WriteLine("Ennek kecskének kéne lennie:{0}", kecskePoz[melyikAjto]);
-            Debug.WriteLine("Melyik ajtó amit kinyit:{0}",melyikAjto);
+            Debug.WriteLine("Ezt választja a kecskepoz-ból:{0}",melyikAjto);
             Debug.WriteLine("Először kiválasztott ajtó:{0}", valasztottkep);
 
-            kepek[melyikAjto] = kepek_mogott[kecskePoz[melyikAjto]];
+            kepek[kecskePoz[melyikAjto]] = kepek_mogott[kecskePoz[melyikAjto]];
             KepFrissit(kepek);
         }
 
