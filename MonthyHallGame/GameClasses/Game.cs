@@ -30,6 +30,7 @@ namespace MonthyHallGame.GameClasses
         int uj_valasztottkep = 4;
         List<int> kecskePoz=new List<int>();
         int autoPoz;
+        int jatekAllapot;
 
 
 
@@ -61,14 +62,16 @@ namespace MonthyHallGame.GameClasses
             ablak_kepek[2].MouseDown += kep_MouseDown;
 
             autoPoz = veletlenSzam.Next(0,kepek.Length);
+            Debug.WriteLine("Autó helye:{0}",autoPoz);
             kepek_mogott[autoPoz] = auto;
+            jatekAllapot = 0;
 
             for (int i = 0; i < kepek_mogott.Length; i++)
             {
                 if (kepek_mogott[i]!=auto)
                 {
                     kecskePoz.Add(i);
-                    Debug.WriteLine(i);
+                    Debug.WriteLine("Kecskék:{0}",i);
                 }
             }
             
@@ -76,15 +79,20 @@ namespace MonthyHallGame.GameClasses
             //todo: megcsinálni és nullázni a számlálókat
         }
 
+        //todo:nem veszem figyelembe a kiválasztott ajtót
         public void ElsoAjtoNyitas()
         {
             var melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
             while (kecskePoz[melyikAjto]==valasztottkep)
             {
                 melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
-            }
 
-            kepek[melyikAjto] = kepek_mogott[melyikAjto];
+            }
+            Debug.WriteLine("Ennek kecskének kéne lennie:{0}", kecskePoz[melyikAjto]);
+            Debug.WriteLine("Melyik ajtó amit kinyit:{0}",melyikAjto);
+            Debug.WriteLine("Először kiválasztott ajtó:{0}", valasztottkep);
+
+            kepek[melyikAjto] = kepek_mogott[kecskePoz[melyikAjto]];
             KepFrissit(kepek);
         }
 
@@ -107,7 +115,18 @@ namespace MonthyHallGame.GameClasses
                 }
             }
             mainWindow.valasztott.Content = valasztottkep;
-            ElsoAjtoNyitas();
+            if (jatekAllapot == 1)
+            {
+                Mutat();
+            }
+
+            if (jatekAllapot==0)
+            {
+                ElsoAjtoNyitas();
+                jatekAllapot++;
+            }
+           
+            
         }
 
         public void Mutat()
