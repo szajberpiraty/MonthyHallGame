@@ -33,6 +33,7 @@ namespace MonthyHallGame.GameClasses
         int jatekAllapot;
         int noCsereNyert;
         int csereNyert;
+        int jatekSzamlalo;
 
 
 
@@ -124,7 +125,7 @@ namespace MonthyHallGame.GameClasses
                     valasztottkep = i;
                 }
             }
-            //mainWindow.valasztott.Content = valasztottkep;
+          
 
             switch (jatekAllapot)
             {
@@ -132,6 +133,8 @@ namespace MonthyHallGame.GameClasses
                     old_valasztottkep = valasztottkep;
                     ElsoAjtoNyitas();
                     jatekAllapot++;
+                    jatekSzamlalo++;
+                    mainWindow.valasztott.Content = "Játékok száma:"+jatekSzamlalo.ToString();
                     break;
                 case 1:
                     Mutat();
