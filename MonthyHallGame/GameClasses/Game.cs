@@ -145,18 +145,22 @@ namespace MonthyHallGame.GameClasses
                         {
                             noCsereNyert++;
                             mainWindow.csereNelkulNyert.Content ="Csere nélkül nyert játékok:"+noCsereNyert.ToString();
+                            //mainWindow.csNy.Maximum = jatekSzamlalo;
+                            //mainWindow.csNy.Value = csereNyert;
                         }
                         else
                         {
                             csereNyert++;
                             mainWindow.cserevelNyert.Content = "Cserélvel nyert játékok:"+csereNyert.ToString();
+                           
                         }
                     }
                     else
                     {
                         //mainWindow.valasztott.Content = "Vesztettél!";
                     }
-
+                    mainWindow.csNy.Maximum = jatekSzamlalo;
+                    mainWindow.csNy.Value = csereNyert;
                     jatekAllapot++;
                     break;
                 case 2:
