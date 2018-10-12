@@ -27,10 +27,12 @@ namespace MonthyHallGame.GameClasses
         private BitmapImage auto;
         Random veletlenSzam = new Random();
         int valasztottkep = 4;
-        int uj_valasztottkep = 4;
+        int old_valasztottkep = 4;
         List<int> kecskePoz = new List<int>();
         int autoPoz;
         int jatekAllapot;
+        int noCsereNyert;
+        int csereNyert;
 
 
 
@@ -122,16 +124,36 @@ namespace MonthyHallGame.GameClasses
                     valasztottkep = i;
                 }
             }
-            mainWindow.valasztott.Content = valasztottkep;
+            //mainWindow.valasztott.Content = valasztottkep;
 
             switch (jatekAllapot)
             {
                 case 0:
+                    old_valasztottkep = valasztottkep;
                     ElsoAjtoNyitas();
                     jatekAllapot++;
                     break;
                 case 1:
                     Mutat();
+                    if (ablak_kepek[valasztottkep].Source==auto)
+                    {
+                        mainWindow.valasztott.Content = "Nyertél!";
+                        if (old_valasztottkep==valasztottkep)
+                        {
+                            noCsereNyert++;
+                            mainWindow.csereNelkulNyert.Content ="Csere nélkül nyert játékok:"+noCsereNyert.ToString();
+                        }
+                        else
+                        {
+                            csereNyert++;
+                            mainWindow.cserevelNyert.Content = "Cserélvel nyert játékok:"+csereNyert.ToString();
+                        }
+                    }
+                    else
+                    {
+                        mainWindow.valasztott.Content = "Vesztettél!";
+                    }
+
                     jatekAllapot++;
                     break;
                 case 2:

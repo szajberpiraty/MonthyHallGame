@@ -11,8 +11,10 @@
     <Grid Name="fogrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+
         </Grid.RowDefinitions>
         
         <Grid Name="ikongrid">
@@ -39,6 +41,8 @@
                    Source="pics/door_closed.png"                   
                    Grid.Row="0"/>
         </Grid>
-        <Label x:Name="valasztott" Content="" Grid.Row="1" />
+        <Label x:Name="valasztott" Content=""  Grid.Row="1" />
+        <Label x:Name="cserevelNyert" Content="Cserével nyert játékok:" Grid.Row="2" />
+        <Label x:Name="csereNelkulNyert" Content="Csere nélkül nyert játékok:" Grid.Row="3" />
     </Grid>
 </Window>
