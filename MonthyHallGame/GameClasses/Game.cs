@@ -19,16 +19,16 @@ namespace MonthyHallGame.GameClasses
     class Game
     {
 
-        
+
         private MainWindow mainWindow;
-        private System.Windows.Controls.Image[] ablak_kepek=new System.Windows.Controls.Image[3];
-        private BitmapImage[] kepek= new BitmapImage[3];
+        private System.Windows.Controls.Image[] ablak_kepek = new System.Windows.Controls.Image[3];
+        private BitmapImage[] kepek = new BitmapImage[3];
         private BitmapImage[] kepek_mogott = new BitmapImage[3];
         private BitmapImage auto;
         Random veletlenSzam = new Random();
-        int valasztottkep=4;
+        int valasztottkep = 4;
         int uj_valasztottkep = 4;
-        List<int> kecskePoz=new List<int>();
+        List<int> kecskePoz = new List<int>();
         int autoPoz;
         int jatekAllapot;
 
@@ -43,53 +43,61 @@ namespace MonthyHallGame.GameClasses
 
         public void Start()
         {
-            
-            kepek[0] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
-            kepek[1] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
-            kepek[2] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
-
-            kepek_mogott[0]= new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
-            kepek_mogott[1] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
-            kepek_mogott[2] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
-            auto= new BitmapImage(new Uri("/pics/car.png", UriKind.Relative));
-
-            ablak_kepek[0] = mainWindow.elsoAjto;
-            ablak_kepek[1] = mainWindow.masodikAjto;
-            ablak_kepek[2] = mainWindow.harmadikAjto;
+            KepInit();
+                                 
 
             ablak_kepek[0].MouseDown += kep_MouseDown;
             ablak_kepek[1].MouseDown += kep_MouseDown;
             ablak_kepek[2].MouseDown += kep_MouseDown;
 
-            autoPoz = veletlenSzam.Next(0,kepek.Length);
-            Debug.WriteLine("Autó helye:{0}",autoPoz);
-            kepek_mogott[autoPoz] = auto;
-            jatekAllapot = 0;
+            AutoElhelyezes();
 
-            for (int i = 0; i < kepek_mogott.Length; i++)
-            {
-                if (kepek_mogott[i]!=auto)
-                {
-                    kecskePoz.Add(i);
-                    Debug.WriteLine("Kecskék:{0}",i);
-                }
-            }
-            
 
             //todo: megcsinálni és nullázni a számlálókat
         }
 
-        //todo:nem veszem figyelembe a kiválasztott ajtót
+        private void AutoElhelyezes()
+        {
+            autoPoz = veletlenSzam.Next(0, kepek.Length);
+            Debug.WriteLine("Autó helye:{0}", autoPoz);
+            kepek_mogott[autoPoz] = auto;
+            jatekAllapot = 0;
+            kecskePoz.Clear();
+            for (int i = 0; i < kepek_mogott.Length; i++)
+            {
+                if (kepek_mogott[i] != auto)
+                {
+                    kecskePoz.Add(i);
+                    Debug.WriteLine("Kecskék:{0}", i);
+                }
+            }
+        }
+
+        private void KepInit()
+        {
+            kepek[0] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
+            kepek[1] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
+            kepek[2] = new BitmapImage(new Uri("/pics/door_closed.png", UriKind.Relative));
+            kepek_mogott[0] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            kepek_mogott[1] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            kepek_mogott[2] = new BitmapImage(new Uri("/pics/Goat.png", UriKind.Relative));
+            auto = new BitmapImage(new Uri("/pics/car.png", UriKind.Relative));
+
+            ablak_kepek[0] = mainWindow.elsoAjto;
+            ablak_kepek[1] = mainWindow.masodikAjto;
+            ablak_kepek[2] = mainWindow.harmadikAjto;
+        }
+
         public void ElsoAjtoNyitas()
         {
             var melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
-            while (kecskePoz[melyikAjto]==valasztottkep)
+            while (kecskePoz[melyikAjto] == valasztottkep)
             {
                 melyikAjto = veletlenSzam.Next(0, kecskePoz.Count);
 
             }
             Debug.WriteLine("Ennek kecskének kéne lennie:{0}", kecskePoz[melyikAjto]);
-            Debug.WriteLine("Ezt választja a kecskepoz-ból:{0},aminek értéke:{1}",melyikAjto, kecskePoz[melyikAjto]);
+            Debug.WriteLine("Ezt választja a kecskepoz-ból:{0},aminek értéke:{1}", melyikAjto, kecskePoz[melyikAjto]);
             Debug.WriteLine("Először kiválasztott ajtó:{0}", valasztottkep);
 
             kepek[kecskePoz[melyikAjto]] = kepek_mogott[kecskePoz[melyikAjto]];
@@ -97,7 +105,7 @@ namespace MonthyHallGame.GameClasses
         }
 
 
-        public void kep_MouseDown(object sender,MouseEventArgs e)
+        public void kep_MouseDown(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < ablak_kepek.Length; i++)
             {
@@ -115,23 +123,50 @@ namespace MonthyHallGame.GameClasses
                 }
             }
             mainWindow.valasztott.Content = valasztottkep;
-            if (jatekAllapot == 1)
+
+            switch (jatekAllapot)
             {
-                Mutat();
+                case 0:
+                    ElsoAjtoNyitas();
+                    jatekAllapot++;
+                    break;
+                case 1:
+                    Mutat();
+                    jatekAllapot++;
+                    break;
+                case 2:
+                    UjJatek();
+                    ablak_kepek[valasztottkep].Opacity = 1;
+                    break;
+                default:
+                    break;
             }
 
-            if (jatekAllapot==0)
-            {
-                ElsoAjtoNyitas();
-                jatekAllapot++;
-            }
-           
-            
+            //if (jatekAllapot == 1)
+            //{
+            //    Mutat();
+            //}
+
+            //if (jatekAllapot == 0)
+            //{
+            //    ElsoAjtoNyitas();
+            //    jatekAllapot++;
+            //}
+
+
         }
 
         public void Mutat()
         {
             KepFrissit(kepek_mogott);
+        }
+
+        public void UjJatek()
+        {
+            KepInit();
+            KepFrissit(kepek);
+            AutoElhelyezes();
+            jatekAllapot = 0;
         }
 
         public void Kepcsere(string pic,int index)
