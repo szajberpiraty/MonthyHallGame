@@ -140,7 +140,7 @@ namespace MonthyHallGame.GameClasses
                     Mutat();
                     if (ablak_kepek[valasztottkep].Source==auto)
                     {
-                        mainWindow.valasztott.Content = "Nyertél!";
+                        //mainWindow.valasztott.Content = "Nyertél!";
                         if (old_valasztottkep==valasztottkep)
                         {
                             noCsereNyert++;
@@ -154,7 +154,7 @@ namespace MonthyHallGame.GameClasses
                     }
                     else
                     {
-                        mainWindow.valasztott.Content = "Vesztettél!";
+                        //mainWindow.valasztott.Content = "Vesztettél!";
                     }
 
                     jatekAllapot++;
