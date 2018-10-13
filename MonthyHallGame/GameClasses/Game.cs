@@ -161,6 +161,8 @@ namespace MonthyHallGame.GameClasses
                     }
                     mainWindow.csNy.Maximum = jatekSzamlalo;
                     mainWindow.csNy.Value = csereNyert;
+                    mainWindow.ncsNy.Maximum = jatekSzamlalo;
+                    mainWindow.ncsNy.Value = noCsereNyert;
                     jatekAllapot++;
                     break;
                 case 2:

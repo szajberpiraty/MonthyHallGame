@@ -15,6 +15,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
 
         </Grid.RowDefinitions>
         
@@ -44,8 +45,10 @@
         </Grid>
         <Label x:Name="valasztott" Content=""  Grid.Row="1" />
         <Label x:Name="cserevelNyert" Content="Cserével nyert játékok:" Grid.Row="2" />
-        <Label x:Name="csereNelkulNyert" Content="Csere nélkül nyert játékok:" Grid.Row="3" />
-        <ProgressBar x:Name="csNy" Grid.Row="4" Minimum="0" />
-        <TextBlock Text="{Binding ElementName=csNy, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" />
+        <Label x:Name="csereNelkulNyert" Content="Csere nélkül nyert játékok:" Grid.Row="4" />
+        <ProgressBar x:Name="csNy" Grid.Row="3" Margin="12" Minimum="0" />
+        <TextBlock Text="{Binding ElementName=csNy, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" />
+        <ProgressBar x:Name="ncsNy" Grid.Row="5" Margin="12" Minimum="0" />
+        <TextBlock Text="{Binding ElementName=ncsNy, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" />
     </Grid>
 </Window>
