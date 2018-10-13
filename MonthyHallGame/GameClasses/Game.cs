@@ -144,14 +144,14 @@ namespace MonthyHallGame.GameClasses
                         if (old_valasztottkep==valasztottkep)
                         {
                             noCsereNyert++;
-                            mainWindow.csereNelkulNyert.Content ="Csere nélkül nyert játékok:"+noCsereNyert.ToString();
+                            //mainWindow.csereNelkulNyert.Content ="Csere nélkül nyert játékok:"+noCsereNyert.ToString();
                             //mainWindow.csNy.Maximum = jatekSzamlalo;
                             //mainWindow.csNy.Value = csereNyert;
                         }
                         else
                         {
                             csereNyert++;
-                            mainWindow.cserevelNyert.Content = "Cserélvel nyert játékok:"+csereNyert.ToString();
+                            //mainWindow.cserevelNyert.Content = "Cserélvel nyert játékok:"+csereNyert.ToString();
                            
                         }
                     }
@@ -173,16 +173,6 @@ namespace MonthyHallGame.GameClasses
                     break;
             }
 
-            //if (jatekAllapot == 1)
-            //{
-            //    Mutat();
-            //}
-
-            //if (jatekAllapot == 0)
-            //{
-            //    ElsoAjtoNyitas();
-            //    jatekAllapot++;
-            //}
 
 
         }
